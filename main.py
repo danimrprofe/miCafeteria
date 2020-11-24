@@ -11,6 +11,14 @@ precios = {
 
 cesta = [] #Aqui guardaremos todos los productos pedidos
 
+def pintar_comanda():
+  print("--------------------------")
+  print("Información de la comanda:")
+  print("--------------------------")
+  for elemento in cesta:
+    print(elemento)
+  print("--------------------------")
+
 for producto in precios.keys():
   print(producto, precios[producto])
 
@@ -29,16 +37,9 @@ while not haTerminadoDePedir:
     haTerminadoDePedir = False
   elif (algoMas == "no"):
     haTerminadoDePedir = True
+    print('De acuerdo. ahora mismo se lo traigo')
+  else:
+    print('Perdone, no le he entendido')
   
-
-
-
-
-
-#0 - cafe
-#1 - donut
-#2
-
-for elemento in cesta:
-  print(elemento)
+pintar_comanda()
 
