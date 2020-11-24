@@ -1,45 +1,33 @@
+import os
+from funciones import *
 
-precios = { 
-  'limonada' : 1.00, 
-  'cafe': 1.50,
-  'bizcocho': 2.00,
-  'magdalena': 1.00,
-  'macarrones': 3.50,
-  'bocadillo': 2.50,
-  'escalope con patatas': 4.50
-  }
-
-cesta = [] #Aqui guardaremos todos los productos pedidos
-
-def pintar_comanda():
-  print("--------------------------")
-  print("Información de la comanda:")
-  print("--------------------------")
-  for elemento in cesta:
-    print(elemento)
-  print("--------------------------")
-
-for producto in precios.keys():
-  print(producto, precios[producto])
-
-haTerminadoDePedir = False
-
-while not haTerminadoDePedir:
-  alimento = input('¿Qué desea tomar?')  
-  if alimento in precios.keys():
-    print('De acuerdo')
-    cesta.append(alimento)
-  else:
-    print('Lo lamento, no está en la carta')
+while True:
   
-  algoMas = input("¿desea algo mas?")
-  if (algoMas == "si"):
-    haTerminadoDePedir = False
-  elif (algoMas == "no"):
-    haTerminadoDePedir = True
-    print('De acuerdo. ahora mismo se lo traigo')
-  else:
-    print('Perdone, no le he entendido')
+  print('Bienvenido a mi cafetería\n\n')
+
+  print('¿Qué desea?:\n')
+
+  print('[0] Mostrar la carta')
+  print('[1] Realizar un pedido')
+  print('[2] Mostrar mi comanda')
+  print('[3] Pedir factura')
+  print('[4] Pagar')
+  print('[5] Irme a mi casa')
   
-pintar_comanda()
+  
+  accion = int(input())
+
+  if (accion == 0):
+    mostrarCarta()
+  elif (accion == 1):
+    mostrarCarta()
+    realizarPedido()
+  elif (accion == 2):
+    pintar_comanda()
+  elif (accion == 3):
+    factura()
+  elif (accion == 4):
+    print('pagar')
+  elif (accion == 5):
+    print('adios')
 
