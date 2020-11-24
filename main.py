@@ -1,9 +1,11 @@
 import os
 from funciones import *
 
-while True:
-  
-  print('Bienvenido a mi cafetería\n\n')
+print('Bienvenido a mi cafetería\n\n')
+
+clienteFinalizado = False
+
+while not clienteFinalizado:  
 
   print('¿Qué desea?:\n')
 
@@ -16,6 +18,8 @@ while True:
   
   
   accion = int(input())
+
+  _ = os.system('clear')
 
   if (accion == 0):
     mostrarCarta()
@@ -30,4 +34,5 @@ while True:
     print('pagar')
   elif (accion == 5):
     print('adios')
+    clienteFinalizado = True
 

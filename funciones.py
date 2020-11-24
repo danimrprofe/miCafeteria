@@ -1,3 +1,10 @@
+import datetime
+
+def mostrarHora():
+  now = datetime.datetime.now()
+  print ("Fecha : ",now.strftime("%Y-%m-%d %H:%M:%S"))
+
+
 precios = { 
   'limonada' : 1.00, 
   'cafe': 1.50,
@@ -8,21 +15,28 @@ precios = {
   'escalope con patatas': 4.50
   }
 
-cesta = [] #Aqui guardaremos todos los productos pedidos
+cesta = {} #Aqui guardaremos todos los productos pedidos
 
 def pintar_comanda():
   print("--------------------------")
   print("Información de la comanda:")
+  mostrarHora()
   print("--------------------------")
-  for elemento in cesta:
-    print(elemento)
+  if not cesta:
+    print("No hay elementos en la comanda")
+  else:
+    for elemento in cesta.keys():
+      print(cesta[elemento], "\t\t ", elemento)
   print("--------------------------")
 
 def factura():
   total = 0.0
-  for producto in cesta:
-    print(producto, precios[producto])
-    total += precios[producto]
+  print("--------------------------")
+  print("Factura:")
+  print("--------------------------")
+  for producto in cesta.keys():
+    print(producto, "\t\t ", cesta[producto], " ", cesta[producto]*precios[producto])
+    total += cesta[producto]*precios[producto]
   print('Total: ',total, ' euros')
 
 def mostrarCarta():
@@ -30,7 +44,7 @@ def mostrarCarta():
   print("Estos son los productos de la cafetería:")
   print("--------------------------")
   for producto in precios.keys():
-    print(producto, precios[producto])
+    print(producto,"\t\t\t\t", precios[producto])
 
 def realizarPedido():
   haTerminadoDePedir = False
@@ -39,7 +53,10 @@ def realizarPedido():
     alimento = input('¿Qué desea tomar?')  
     if alimento in precios.keys():
       print('De acuerdo')
-      cesta.append(alimento)
+      if alimento in cesta.keys():
+        cesta[alimento] += 1
+      else:
+        cesta[alimento] = 1
     else:
       print('Lo lamento, no está en la carta')
   
