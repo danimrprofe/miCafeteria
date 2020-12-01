@@ -1,9 +1,12 @@
 import os
+import comanda import *
 from funciones import *
 
 print('Bienvenido a mi cafetería\n\n')
 
 clienteFinalizado = False
+
+comanda = Comanda()
 
 while not clienteFinalizado:  
 
@@ -25,13 +28,13 @@ while not clienteFinalizado:
     mostrarCarta()
   elif (accion == 1):
     mostrarCarta()
-    realizarPedido()
+    comanda.realizarPedido()
   elif (accion == 2):
-    pintar_comanda()
+    comanda.imprimir()
   elif (accion == 3):
-    factura()
+    comanda.factura()
   elif (accion == 4):
-    print('pagar')
+    comanda.pagar()
   elif (accion == 5):
     print('adios')
     clienteFinalizado = True
