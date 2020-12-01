@@ -1,61 +1,66 @@
-class comanda{{
-  def __init__ (self, numeroMesa):
-    mesa = numeroMesa
-    cesta = {}
-    fecha = datetime.datetime.now()
-    factura_cambio = 0.0
-    factura_cantidadPagada = 0.0
-    factura_pagada = False
+import datetime
+from carta import *
+
+class Comanda:
+
+  def __init__ (self, numeroMesa, cartaPasada):
+    self.cartaRestaurante = cartaPasada
+    self.mesa = numeroMesa
+    self.cesta = {}
+    self.fecha = datetime.datetime.now()
+    self.factura_cambio = 0.0
+    self.factura_cantidadPagada = 0.0
+    self.factura_pagada = False
+    self.haTerminadoDePedir = False
   
-  def imprimirFecha():
+  def imprimirFecha(self):
     print ("Fecha : ",self.fecha.strftime("%Y-%m-%d %H:%M:%S"))
 
-  def imprimir():
+  def imprimir(self):
     print("--------------------------")
     print("Información de la comanda:")
-    mostrarHora()
+    self.imprimirFecha()
     print("--------------------------")
-    if not cesta:
+    if not self.cesta:
       print("No hay elementos en la comanda")
     else:
-      for elemento in cesta.keys():
-        print(cesta[elemento], "\t\t ", elemento)
+      for elemento in self.cesta.keys():
+        print(self.cesta[elemento], "\t\t ", elemento)
     print("--------------------------")
 
-  def realizarPedido():
-    haTerminadoDePedir = False
+  def realizarPedido(self):
+    
 
-    while not haTerminadoDePedir:
+    while not self.haTerminadoDePedir:
       alimento = input('¿Qué desea tomar?')  
-      if alimento in precios.keys():
+      if alimento in self.cartaRestaurante.precios.keys():
         print('De acuerdo')
-        if alimento in cesta.keys():
-          cesta[alimento] += 1
+        if alimento in self.cesta.keys():
+          self.cesta[alimento] += 1
         else:
-          cesta[alimento] = 1
+          self.cesta[alimento] = 1
       else:
         print('Lo lamento, no está en la carta')
     
       algoMas = input("¿desea algo mas?")
       if (algoMas == "si"):
-        haTerminadoDePedir = False
+        self.haTerminadoDePedir = False
       elif (algoMas == "no"):
-        haTerminadoDePedir = True
+        self.haTerminadoDePedir = True
         print('De acuerdo. ahora mismo se lo traigo')
       else:
         print('Perdone, no le he entendido')
 
-  def factura():
+  def factura(self):
     total = 0.0
     print("--------------------------")
     print("Factura:")
     print("--------------------------")
-    for producto in cesta.keys():
-      print(producto, "\t\t ", cesta[producto], " ", cesta[producto]*precios[producto])
-      total += cesta[producto]*precios[producto]
+    for producto in self.cesta.keys():
+      print(producto, "\t\t ", self.cesta[producto], " ", self.cesta[producto]*self.cartaRestaurante.precios[producto])
+      total += self.cesta[producto]*self.cartaRestaurante.sprecios[producto]
     print('Total: ',total, ' euros')
 
   def pagar():
     self.factura_pagada = True
 
-}

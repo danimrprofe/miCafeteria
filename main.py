@@ -1,12 +1,14 @@
 import os
-import comanda import *
+from comanda import *
 from funciones import *
+from carta import *
 
 print('Bienvenido a mi cafetería\n\n')
 
 clienteFinalizado = False
 
-comanda = Comanda()
+carta = Carta()
+comanda = Comanda(1, carta)
 
 while not clienteFinalizado:  
 
@@ -20,14 +22,15 @@ while not clienteFinalizado:
   print('[5] Irme a mi casa')
   
   
-  accion = int(input())
+  accion = int(input('\n Enter para volver al menu\n'))
 
-  _ = os.system('clear')
+  _ = os.system('cls')
+
 
   if (accion == 0):
-    mostrarCarta()
+    carta.mostrarCarta()
   elif (accion == 1):
-    mostrarCarta()
+    carta.mostrarCarta()
     comanda.realizarPedido()
   elif (accion == 2):
     comanda.imprimir()
